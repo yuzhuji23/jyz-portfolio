@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JI Yuzhu</title>
+  <meta name="theme-color" content="#101018">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23101018' width='32' height='32'/%3E%3Ccircle cx='16' cy='16' r='5' fill='none' stroke='%23f4f1ea' stroke-width='1.4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@340;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=39">
+</head>
+<body>
+  <div class="mesh" aria-hidden="true">
+    <span class="blob blob-a"></span>
+    <span class="blob blob-b"></span>
+    <span class="blob blob-c"></span>
+  </div>
+  <canvas class="stars" id="stars" aria-hidden="true"></canvas>
+  <div class="corona" aria-hidden="true"></div>
+  <svg class="orbits" id="orbits" aria-hidden="true"></svg>
+  <div class="glow" id="glow" aria-hidden="true"></div>
+  <img class="figure" src="assets/figure.jpg" alt="">
+  <button class="figure-hit" type="button" data-room="portraits" aria-label="Portraits"></button>
+
+  <button class="mark" type="button">
+    <span class="mark-en">JI Yuzhu</span>
+  </button>
+
+  <div class="field">
+    <button class="node" type="button" data-room="education">
+      <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+        <defs><clipPath id="clip-edu"><circle cx="42" cy="36" r="15"/></clipPath></defs>
+        <circle cx="18" cy="20" r="2.2" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="12" cy="28" r="1.3" fill="currentColor"/>
+        <circle cx="20" cy="13" r="1" fill="currentColor"/>
+        <circle cx="42" cy="36" r="15" fill="none" stroke="currentColor" stroke-width="1.45"/>
+        <g clip-path="url(#clip-edu)" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M26 27c7 1.6 16 1.4 26-.5"/>
+          <path d="M26 33.5c8 1.7 18 1.3 28-.3"/>
+          <path d="M27 40c7 1.4 15 1.1 24-.4"/>
+          <path d="M30 46c5 .8 11 .6 16-.2"/>
+        </g>
+      </svg>
+      <span class="node-label">Education</span>
+    </button>
+    <button class="node" type="button" data-room="internships">
+      <svg class="planet" viewBox="0 0 80 80" aria-hidden="true">
+        <g transform="rotate(-28 40 42)" fill="none" stroke="currentColor" stroke-width="1.35">
+          <path d="M12 42a28 8 0 0 1 56 0"/>
+        </g>
+        <circle cx="40" cy="42" r="14" fill="#07080d" stroke="currentColor" stroke-width="1.45"/>
+        <g transform="rotate(-28 40 42)" fill="none" stroke="currentColor" stroke-width="1.35">
+          <path d="M12 42a28 8 0 0 0 56 0"/>
+        </g>
+      </svg>
+      <span class="node-label">Internships</span>
+    </button>
+    <button class="node" type="button" data-room="research">
+      <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+        <circle cx="36" cy="36" r="16" fill="none" stroke="currentColor" stroke-width="1.45"/>
+        <circle cx="28" cy="30" r="4.2" fill="none" stroke="currentColor" stroke-width="1.15"/>
+        <circle cx="29" cy="29" r="1.1" fill="currentColor"/>
+        <circle cx="43" cy="33" r="2.6" fill="none" stroke="currentColor" stroke-width="1.1"/>
+        <circle cx="33" cy="44" r="3.1" fill="none" stroke="currentColor" stroke-width="1.1"/>
+        <circle cx="46" cy="45" r="1.5" fill="currentColor"/>
+        <circle cx="40" cy="24" r="1.1" fill="currentColor"/>
+      </svg>
+      <span class="node-label">Research</span>
+    </button>
+    <button class="node" type="button" data-room="honors">
+      <svg class="planet" viewBox="0 0 80 80" aria-hidden="true">
+        <ellipse cx="36" cy="42" rx="28" ry="11" fill="none" stroke="currentColor" stroke-width="0.95" transform="rotate(-18 36 42)"/>
+        <circle cx="36" cy="42" r="14" fill="#07080d" stroke="currentColor" stroke-width="1.45"/>
+        <circle cx="62" cy="28" r="3.4" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="64" cy="54" r="2" fill="currentColor"/>
+        <circle cx="12" cy="34" r="1.5" fill="currentColor"/>
+      </svg>
+      <span class="node-label">Honors</span>
+    </button>
+    <button class="node mid" type="button" data-room="contests">
+      <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+        <defs><clipPath id="clip-con"><circle cx="36" cy="36" r="15"/></clipPath></defs>
+        <circle cx="36" cy="36" r="15" fill="none" stroke="currentColor" stroke-width="1.45"/>
+        <g clip-path="url(#clip-con)" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 29c8 2 16 2 32 0"/>
+          <path d="M20 36c8 2.2 18 2 34-.2"/>
+          <path d="M20 43c8 1.8 16 1.6 30-.2"/>
+        </g>
+      </svg>
+      <span class="node-label">Contests</span>
+    </button>
+    <button class="node mid" type="button" data-room="interests">
+      <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+        <circle cx="36" cy="36" r="15" fill="none" stroke="currentColor" stroke-width="1.45"/>
+        <path d="M27 30c7-9 20-7 22 2 2 9-7 16-16 13-6-2-8-8-4-12" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M32 24c12 0 18 10 14 18" fill="none" stroke="currentColor" stroke-width="1.05"/>
+        <circle cx="42" cy="34" r="1.5" fill="currentColor"/>
+      </svg>
+      <span class="node-label">Interests</span>
+    </button>
+    <button class="node mid" type="button" data-room="languages">
+      <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+        <circle cx="18" cy="22" r="1.6" fill="currentColor"/>
+        <circle cx="13" cy="29" r="1.15" fill="currentColor"/>
+        <circle cx="11" cy="36" r="0.8" fill="currentColor"/>
+        <circle cx="40" cy="36" r="14" fill="none" stroke="currentColor" stroke-width="1.45"/>
+        <path d="M40 22a14 14 0 0 1 0 28 10 14 0 0 0 0-28z" fill="currentColor"/>
+      </svg>
+      <span class="node-label">Languages</span>
+    </button>
+    <button class="node small" type="button" data-room="projects">
+      <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+        <circle cx="36" cy="36" r="13" fill="none" stroke="currentColor" stroke-width="1.45"/>
+        <path d="M28 30c4-6 12-6 16-1" fill="none" stroke="currentColor" stroke-width="1.15"/>
+        <circle cx="31" cy="40" r="2.4" fill="none" stroke="currentColor" stroke-width="1.05"/>
+        <circle cx="42" cy="42" r="1.3" fill="currentColor"/>
+        <circle cx="40" cy="30" r="1" fill="currentColor"/>
+      </svg>
+      <span class="node-label">Projects</span>
+    </button>
+  </div>
+
+  <section class="room" id="room-education" data-tone="education" inert>
+    <div class="room-inner">
+      <p class="giant">Education</p>
+      <ul class="facts">
+        <li>
+          <strong>China Agricultural University</strong>
+          <span class="when">Sep 2023 — Jun 2027</span>
+          <span class="role">Bachelor of Economics</span>
+          <span class="sub">Major: Economics · Minors: Mathematics, Data Science</span>
+          <span class="sub">Joint program with University of Colorado Denver</span>
+          <span class="line">
+            <span>GPA 3.87 / 4.00 · Rank 6 / 122 (Top 5%)</span>
+            <button class="proof" type="button" data-proof="proofs/transcript-cn.pdf">Chinese transcript</button>
+            <button class="proof" type="button" data-proof="proofs/transcript-us.pdf">U.S. transcript</button>
+            <button class="proof" type="button" data-sheet="coursework">Coursework</button>
+          </span>
+        </li>
+        <li>
+          <strong>NYU Stern</strong>
+          <span class="when">Summer 2027</span>
+          <span class="role">M.S. Data Analytics and Business Computing</span>
+          <span class="sub">Admitted · second-class scholarship</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="room has-posts" id="room-internships" data-tone="internships" inert>
+    <div class="lane">
+      <div class="rail">
+        <span class="stop-when">Jul — Aug 2024</span>
+        <span class="stop-when">Jan — Feb 2025</span>
+        <span class="stop-when">Jun — Sep 2025</span>
+        <span class="stop-when">Jul — Sep 2026</span>
+      </div>
+      <div class="posts">
+        <button class="post" type="button" data-room="cmb">
+          <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+            <circle cx="36" cy="36" r="16" fill="none" stroke="currentColor" stroke-width="1.45"/>
+            <circle cx="27" cy="31" r="4" fill="none" stroke="currentColor" stroke-width="1.1"/>
+            <circle cx="28" cy="30" r="1.1" fill="currentColor"/>
+            <circle cx="44" cy="33" r="2.5" fill="none" stroke="currentColor" stroke-width="1.05"/>
+            <circle cx="34" cy="45" r="3" fill="none" stroke="currentColor" stroke-width="1.05"/>
+            <circle cx="47" cy="46" r="1.3" fill="currentColor"/>
+            <circle cx="22" cy="42" r="1" fill="currentColor"/>
+          </svg>
+          <span class="post-name">China Merchants Bank</span>
+          <span class="post-role">Business assistant</span>
+        </button>
+        <button class="post" type="button" data-room="ey">
+          <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+            <defs><clipPath id="clip-ey"><circle cx="36" cy="36" r="15"/></clipPath></defs>
+            <circle cx="36" cy="36" r="15" fill="none" stroke="currentColor" stroke-width="1.45"/>
+            <g clip-path="url(#clip-ey)" fill="none" stroke="currentColor" stroke-width="1.25">
+              <path d="M20 27c5 3 11-3 17 0s12 3 16-1"/>
+              <path d="M20 35c5 3 11-3 17 0s12 3 16-1"/>
+              <path d="M20 43c5 3 11-3 17 0s12 3 16-1"/>
+            </g>
+          </svg>
+          <span class="post-name">EY Business Advisory</span>
+          <span class="post-role">Tax assistant</span>
+        </button>
+        <button class="post" type="button" data-room="dongxing">
+          <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+            <g transform="rotate(22 36 36)" fill="none" stroke="currentColor" stroke-width="1.3">
+              <path d="M8 36a28 7.5 0 0 1 56 0"/>
+            </g>
+            <circle cx="36" cy="36" r="13" fill="#101018" stroke="currentColor" stroke-width="1.45"/>
+            <g transform="rotate(22 36 36)" fill="none" stroke="currentColor" stroke-width="1.3">
+              <path d="M8 36a28 7.5 0 0 0 56 0"/>
+            </g>
+          </svg>
+          <span class="post-name">Dongxing Securities</span>
+          <span class="post-role">Analyst intern</span>
+        </button>
+        <button class="post" type="button" data-room="fintech">
+          <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+            <defs><clipPath id="clip-ft"><circle cx="36" cy="36" r="14"/></clipPath></defs>
+            <circle cx="17" cy="30" r="2.4" fill="none" stroke="currentColor" stroke-width="1.15"/>
+            <circle cx="55" cy="46" r="1.5" fill="currentColor"/>
+            <circle cx="36" cy="36" r="14" fill="none" stroke="currentColor" stroke-width="1.45"/>
+            <g clip-path="url(#clip-ft)" fill="none" stroke="currentColor" stroke-width="1.15">
+              <path d="M22 28c6 1.4 14 1.2 24-.4"/>
+              <path d="M22 34c7 1.5 16 1.2 28-.3"/>
+              <path d="M23 40c6 1.2 13 1 22-.3"/>
+              <path d="M26 46c4 .7 9 .5 14-.2"/>
+            </g>
+          </svg>
+          <span class="post-name">Beijing FinTech Industry Alliance</span>
+          <span class="post-role">Research &amp; project intern</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="room is-detail" id="room-cmb" data-tone="internships" data-parent="room-internships" inert>
+    <div class="room-inner">
+      <p class="giant">China Merchants Bank</p>
+      <p class="role">Business assistant · credit data &amp; risk analysis</p>
+      <p class="sub">Jul — Aug 2024 · Dalian</p>
+      <ul class="facts">
+        <li>Participated in the credit process for 5 corporate clients, using Python to automate financial statement parsing, calculate key ratios, and integrate industry benchmarks to support credit decisions.</li>
+        <li>Studied and simulated the bank’s internal credit rating process using public credit data and internal sanitized samples, practicing default prediction with logistic regression and decision trees, and gaining initial skills in variable selection and model evaluation.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="room is-detail" id="room-ey" data-tone="internships" data-parent="room-internships" inert>
+    <div class="room-inner">
+      <p class="giant">EY Business Advisory</p>
+      <p class="role">Tax assistant · data analytics support</p>
+      <p class="sub">Jan — Feb 2025 · Dalian</p>
+      <ul class="facts">
+        <li>Automated corporate income tax working paper compilation by developing Python scripts to process hundreds of invoices with built-in data validation rules, ensuring accuracy throughout the pipeline.</li>
+        <li>Extracted multi-period tax data using SQL for trend analysis and risk detection, and built Tableau dashboards to visualize changes in tax burden structure.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="room is-detail" id="room-dongxing" data-tone="internships" data-parent="room-internships" inert>
+    <div class="room-inner">
+      <p class="giant">Dongxing Securities</p>
+      <p class="role">Analyst intern · quantitative research</p>
+      <p class="sub">Jun — Sep 2025 · Dalian</p>
+      <ul class="facts">
+        <li>Independently utilized Python to collect and clean nearly 10 years of daily market data and style factor data for the entire A-share market from APIs like Wind, handling missing values, outliers, and adjustment factors to build a standardized factor library.</li>
+        <li>Applied the CAPM and Fama-French Three-Factor Model, conducting multiple linear regression using statsmodels to calculate stock-specific Beta and model R-squared, quantitatively identifying “aggressive” risk characteristics and analyzing factor exposure differences across industry sectors.</li>
+        <li>Designed an event study on the ChiNext IPO reform, computing AR/CAR over a 120-day window and tracking R² decline (0.291 → 0.058) through rolling regression to quantify policy impact.</li>
+        <li>Tested factor efficacy with machine learning models (scikit-learn) and visualized results using Matplotlib/Seaborn.</li>
+      </ul>
+      <button class="proof" type="button" data-proof="proofs/dongxing-report.pdf?v=2">Analysis report</button>
+    </div>
+  </section>
+
+  <section class="room is-detail" id="room-fintech" data-tone="internships" data-parent="room-internships" inert>
+    <div class="room-inner split">
+      <div class="split-copy">
+        <p class="giant">Beijing FinTech Industry Alliance</p>
+        <p class="role">Research &amp; project intern</p>
+        <p class="sub">Jul — Sep 2026 · Beijing</p>
+        <ul class="facts">
+          <li>Conducted technical due diligence and scenario analysis on AI finance and large-model deployment; drafted assessment reports drawing on practices from 390+ member institutions. Built a competition data visualization and screening platform with AI-assisted coding, improving screening efficiency by over 100%.</li>
+        </ul>
+      </div>
+      <img class="board" src="assets/fintech-board.jpg?v=3" alt="Competition data board">
+    </div>
+  </section>
+
+  <section class="room has-posts" id="room-research" data-tone="research" inert>
+    <div class="lane three">
+      <div class="rail">
+        <span class="stop-when">Mar — Jul 2025</span>
+        <span class="stop-when">Oct 2025 — Jun 2026</span>
+        <span class="stop-when">Dec 2025 — present</span>
+      </div>
+      <div class="posts">
+        <button class="post" type="button" data-room="asean">
+          <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+            <circle cx="36" cy="36" r="15" fill="none" stroke="currentColor" stroke-width="1.45"/>
+            <path d="M24 30c6 2 12-4 18 0s10 3 12-2" fill="none" stroke="currentColor" stroke-width="1.15"/>
+            <path d="M22 38c7 2.2 14-3 20 0s12 2 14-1" fill="none" stroke="currentColor" stroke-width="1.15"/>
+            <path d="M26 46c5 1.4 10-2 14 0s8 1 10-1" fill="none" stroke="currentColor" stroke-width="1.1"/>
+          </svg>
+          <span class="post-name">China–ASEAN Agricultural Trade</span>
+        </button>
+        <button class="post" type="button" data-room="listed">
+          <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+            <g transform="rotate(-24 36 36)" fill="none" stroke="currentColor" stroke-width="1.25">
+              <path d="M10 36a26 7 0 0 1 52 0"/>
+            </g>
+            <circle cx="36" cy="36" r="13" fill="#101018" stroke="currentColor" stroke-width="1.45"/>
+            <g transform="rotate(-24 36 36)" fill="none" stroke="currentColor" stroke-width="1.25">
+              <path d="M10 36a26 7 0 0 0 52 0"/>
+            </g>
+            <circle cx="54" cy="22" r="1.3" fill="currentColor"/>
+          </svg>
+          <span class="post-name">Listed-Firm Valuation &amp; Market Sentiment</span>
+        </button>
+        <button class="post" type="button" data-room="firstborn">
+          <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+            <circle cx="36" cy="36" r="15" fill="none" stroke="currentColor" stroke-width="1.45"/>
+            <circle cx="30" cy="32" r="3.2" fill="none" stroke="currentColor" stroke-width="1.1"/>
+            <circle cx="44" cy="30" r="2" fill="none" stroke="currentColor" stroke-width="1.05"/>
+            <circle cx="38" cy="44" r="2.6" fill="none" stroke="currentColor" stroke-width="1.05"/>
+            <circle cx="24" cy="44" r="1.1" fill="currentColor"/>
+          </svg>
+          <span class="post-name">Firstborn Sex, Parental Well-being &amp; Fertility Intentions</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="room is-detail" id="room-asean" data-tone="research" data-parent="room-research" inert>
+    <div class="room-inner">
+      <p class="giant">China–ASEAN Agricultural Trade</p>
+      <p class="role">Research assistant · NSFC</p>
+      <p class="sub">Mar — Jul 2025</p>
+      <ul class="facts">
+        <li>Integrated multi-dimensional trade datasets and automated processing of bilateral trade flows using Python to construct a high-granularity quantitative framework. Applied the three-stage CODEA model to assess resilience of core trade pathways covering 90.23% of total volume, quantitatively analyzing stability of export, transport, and import segments under external shocks.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="room is-detail" id="room-listed" data-tone="research" data-parent="room-research" inert>
+    <div class="room-inner">
+      <p class="giant">Listed-Firm Valuation &amp; Market Sentiment</p>
+      <p class="role">Independent researcher</p>
+      <p class="sub">Oct 2025 — Jun 2026</p>
+      <ul class="facts">
+        <li>Independently authored a comprehensive English thesis analyzing Contemporary Amperex Technology Co. Limited (CATL), investigating the relationship between its fundamental value and market pricing.</li>
+        <li>Expanded the research into a quantitative study on market sentiment and short-term price predictability, using CATL and key competitors (BYD, Ganfeng Lithium, EVE Energy) as cases, by building a Chinese sentiment analysis pipeline with SnowNLP for retail forum posts and a FinBERT/rating-fallback approach for institutional research reports, processing East Money Guba posts and brokerage texts to derive daily and monthly sentiment indicators aligned with price data.</li>
+        <li>Over 122 trading days, constructed 7-D composite sentiment (consecutive high days, 5-day persistence, momentum, Z-score, relative competitor gap). Evaluated six classifiers via Leave-One-Out cross-validation for next-day direction. Sentiment-only features achieved 60.7% LOO accuracy (Decision Tree), outperforming price-volume (59.8%) and full feature mix (54.9%).</li>
+      </ul>
+      <button class="proof" type="button" data-proof="proofs/catl-paper.pdf">Paper</button>
+    </div>
+  </section>
+
+  <section class="room is-detail" id="room-firstborn" data-tone="research" data-parent="room-research" inert>
+    <div class="room-inner">
+      <p class="giant">Firstborn Sex, Parental Well-being &amp; Fertility Intentions</p>
+      <p class="role">Co-first author · manuscript under review</p>
+      <p class="sub">Dec 2025 — present</p>
+      <ul class="facts">
+        <li>Using multi-wave microdata from the China Family Panel Studies (CFPS), built econometric models linking firstborn sex to second-birth intentions and conducted mediation analysis with depressive-symptom indicators.</li>
+        <li>As co-first author, led core empirical analysis and manuscript drafting; invited to present at an international conference in Seoul, March 2027.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="room has-posts" id="room-contests" data-tone="contests" inert>
+    <div class="lane two">
+      <div class="rail">
+        <span class="stop-when">Oct — Nov 2025</span>
+        <span class="stop-when">Jan — Feb 2026</span>
+      </div>
+      <div class="posts">
+        <button class="post" type="button" data-room="scudem">
+          <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+            <circle cx="36" cy="36" r="14" fill="none" stroke="currentColor" stroke-width="1.45"/>
+            <circle cx="30" cy="32" r="3" fill="none" stroke="currentColor" stroke-width="1.1"/>
+            <circle cx="43" cy="31" r="1.8" fill="none" stroke="currentColor" stroke-width="1.05"/>
+            <circle cx="40" cy="43" r="2.4" fill="none" stroke="currentColor" stroke-width="1.05"/>
+            <circle cx="24" cy="42" r="1.1" fill="currentColor"/>
+          </svg>
+          <span class="post-name">SCUDEM</span>
+        </button>
+        <button class="post" type="button" data-room="mcm">
+          <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+            <defs><clipPath id="clip-mcm"><circle cx="36" cy="36" r="15"/></clipPath></defs>
+            <circle cx="36" cy="36" r="15" fill="none" stroke="currentColor" stroke-width="1.45"/>
+            <g clip-path="url(#clip-mcm)" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M20 28c6 2 14 2 32 0"/>
+              <path d="M20 36c6 2.2 16 2 34-.2"/>
+              <path d="M20 44c6 1.6 14 1.4 28-.2"/>
+            </g>
+          </svg>
+          <span class="post-name">MCM / ICM</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="room is-detail" id="room-scudem" data-tone="contests" data-parent="room-contests" inert>
+    <div class="room-inner">
+      <p class="giant">SCUDEM</p>
+      <p class="role">Outstanding Award</p>
+      <p class="sub">Oct — Nov 2025</p>
+      <ul class="facts">
+        <li>Developed a probabilistic framework to model a complex biological system integrating information propagation and alert-triggering mechanisms. Quantified and streamlined core assumptions to enhance analytical tractability.</li>
+        <li>Solved coupled differential equations using Euler’s method, identifying critical thresholds (species count = 4) and a saturation point (19) where group advantage emerges.</li>
+      </ul>
+      <button class="proof" type="button" data-proof="proofs/scudem.pdf">Certificate</button>
+    </div>
+  </section>
+
+  <section class="room is-detail" id="room-mcm" data-tone="contests" data-parent="room-contests" inert>
+    <div class="room-inner">
+      <p class="giant">MCM / ICM</p>
+      <p class="role">Team lead</p>
+      <p class="sub">Jan — Feb 2026</p>
+      <ul class="facts">
+        <li>Led a team to solve a sports team management and profit optimization problem. Built a dynamic optimization model balancing win probability and financial return using Python for data processing and modeling.</li>
+        <li>Applied Monte Carlo simulation and sensitivity analysis to refine trading strategies under uncertainty. Co-authored a 25-page technical paper.</li>
+      </ul>
+      <button class="proof" type="button" data-proof="proofs/mcm-paper.pdf">Paper</button>
+    </div>
+  </section>
+
+  <section class="room" id="room-interests" data-tone="interests" inert>
+    <div class="room-inner">
+      <p class="giant">Interests</p>
+      <ul class="facts">
+        <li>
+          <strong>Zhongruan <span class="grade">(Level 10)</span></strong>
+          <span class="line">
+            <button class="proof" type="button" data-image="assets/zhongruan.jpg">Certificate</button>
+          </span>
+        </li>
+        <li>
+          <strong>Folk dance <span class="grade">(Level 10)</span></strong>
+          <span class="line">
+            <button class="proof" type="button" data-image="assets/folk-dance.jpg">Certificate</button>
+          </span>
+        </li>
+        <li>
+          <strong>Sommelier <span class="grade">(Level 1)</span></strong>
+          <span class="line">
+            <span class="role">CAFA · Brandy course</span>
+            <button class="proof" type="button" data-image="assets/sommelier.jpg">Certificates</button>
+          </span>
+        </li>
+        <li>
+          <strong>Table tennis</strong>
+          <span class="line">
+            <span class="role">Inter-college first prize</span>
+            <button class="proof" type="button" data-image="assets/table-tennis.jpg">Certificate</button>
+          </span>
+        </li>
+        <li>
+          <strong>Rock climbing · hiking · badminton</strong>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="room" id="room-honors" data-tone="honors" inert>
+    <div class="room-inner">
+      <p class="giant">Honors</p>
+      <ul class="years">
+        <li>
+          <span class="when">2025–2026</span>
+          <span class="role">National Scholarship</span>
+          <span>First-Class Academic Scholarship, China Agricultural University</span>
+        </li>
+        <li>
+          <span class="when">2024–2025 &amp; 2025–2026</span>
+          <span>First-Class Scholarship, University of Colorado Denver</span>
+        </li>
+        <li>
+          <span class="when">2023–2024 &amp; 2024–2025</span>
+          <span>Second-Class Academic Scholarship, China Agricultural University</span>
+        </li>
+        <li>
+          <span>Dean’s Scholarship</span>
+          <span>University Outstanding Student</span>
+          <span>First Prize, IPS Wealth Management Competition</span>
+        </li>
+      </ul>
+      <button class="proof" type="button" data-proof="proofs/certificates.pdf">Certificates</button>
+    </div>
+  </section>
+
+  <section class="room has-posts" id="room-projects" data-tone="projects" inert>
+    <div class="stack">
+      <button class="post" type="button" data-room="avazu">
+        <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+          <defs><clipPath id="clip-av"><circle cx="36" cy="36" r="15"/></clipPath></defs>
+          <circle cx="36" cy="36" r="15" fill="none" stroke="currentColor" stroke-width="1.45"/>
+          <g clip-path="url(#clip-av)" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M20 28c6 2 14 2 32 0"/>
+            <path d="M20 36c6 2.2 16 2 34-.2"/>
+            <path d="M20 44c6 1.6 14 1.4 28-.2"/>
+          </g>
+        </svg>
+        <span class="post-copy">
+          <span class="post-name">Avazu</span>
+          <span class="post-blurb">40.4 million ad impressions. A frequency cap that keeps the reach.</span>
+        </span>
+      </button>
+      <button class="post" type="button" data-room="yueji">
+        <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+          <circle cx="34" cy="36" r="15" fill="none" stroke="currentColor" stroke-width="1.45"/>
+          <path d="M34 21a15 15 0 0 1 0 30 11 15 0 0 0 0-30z" fill="currentColor"/>
+          <circle cx="56" cy="22" r="1.4" fill="currentColor"/>
+          <circle cx="60" cy="30" r="0.9" fill="currentColor"/>
+        </svg>
+        <span class="post-copy">
+          <span class="post-name">Yueji</span>
+          <span class="post-blurb">A reading list and a world map, kept in the browser.</span>
+        </span>
+      </button>
+      <button class="post" type="button" data-room="myomap">
+        <svg class="planet" viewBox="0 0 72 72" aria-hidden="true">
+          <circle cx="36" cy="36" r="14" fill="none" stroke="currentColor" stroke-width="1.45"/>
+          <circle cx="28" cy="30" r="3.2" fill="none" stroke="currentColor" stroke-width="1.15"/>
+          <circle cx="44" cy="32" r="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/>
+          <circle cx="36" cy="44" r="3.4" fill="none" stroke="currentColor" stroke-width="1.1"/>
+          <circle cx="48" cy="46" r="1.2" fill="currentColor"/>
+        </svg>
+        <span class="post-copy">
+          <span class="post-name">MyoMap</span>
+          <span class="post-blurb">Training, drawn on the muscles. The level fades.</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <section class="room is-detail" id="room-avazu" data-tone="projects" data-parent="room-projects" inert>
+    <div class="room-inner">
+      <p class="giant">Avazu</p>
+      <p class="role">Mobile ad click logs</p>
+      <p class="sub">DuckDB · Python</p>
+      <ul class="facts">
+        <li>About 40.4 million impressions from the public Avazu click log, 21–30 October 2014. The question was how to drop low-value repeat impressions without giving up reach or clicks.</li>
+        <li>DuckDB SQL splits the click rate by channel, hour, and how many times a user has already been shown an ad. An A/A check, then an A/B design, for one rule: on app traffic over cellular, cap from the fourth impression. In the training window that kept 95.7% of impressions, raised the click rate 3.85%, and kept 99.4% of clicks. A later window held 96.8%, +2.42%, and 99.1% of clicks.</li>
+        <li>Logistic regression, FM, and DeepFM only show that clicks can be ranked. They are not the result. The log is public contest data, not an in-house ad system.</li>
+      </ul>
+      <a class="jump" href="projects/avazu.html" target="_blank" rel="noopener noreferrer">Report</a>
+    </div>
+  </section>
+
+  <section class="room is-detail" id="room-yueji" data-tone="projects" data-parent="room-projects" inert>
+    <div class="room-inner split">
+      <div class="split-copy">
+        <p class="giant">Yueji</p>
+        <p class="role">A reading list that stays in the browser</p>
+        <p class="sub">Vibe-coded · HTML · CSS · JavaScript</p>
+        <ul class="facts">
+          <li>Type a title. The page asks DeepSeek for the author, year, country, and genre, then files the book and draws it on a world map.</li>
+          <li>The key belongs to whoever is using the page, and it stays in that browser. The shelf is in IndexedDB. There is no account and no server. The site is static files on GitHub Pages.</li>
+          <li>Vibe-coded: the screen and the wiring were shaped with a model, then checked in the browser.</li>
+        </ul>
+        <a class="jump" href="https://yuzhuji23.github.io/yueji-cloud/" target="_blank" rel="noopener noreferrer">Site</a>
+      </div>
+      <img class="board" src="assets/yueji.jpg" alt="Yueji reading list and world map">
+    </div>
+  </section>
+
+  <section class="room is-detail" id="room-myomap" data-tone="projects" data-parent="room-projects" inert>
+    <div class="room-inner split">
+      <div class="split-copy">
+        <p class="giant">MyoMap</p>
+        <p class="role">Training, drawn on the body</p>
+        <p class="sub">Vibe-coded · Next.js · Tailwind · Zustand · Supabase</p>
+        <ul class="facts">
+          <li>Pick a muscle and set a level from 1 to 5. The muscles that work with it light up as well. The level fades over days, and a group left more than seven days is marked on the map.</li>
+          <li>Next.js and Tailwind draw the screen. Zustand keeps the level while it is being set. Supabase handles sign-in and the saved sessions.</li>
+          <li>Vibe-coded: a small interface for one idea, built with a model and then checked against the page.</li>
+        </ul>
+        <a class="jump" href="https://myomap-three.vercel.app" target="_blank" rel="noopener noreferrer">Site</a>
+      </div>
+      <img class="board" src="assets/myomap.jpg" alt="MyoMap muscle map">
+    </div>
+  </section>
+
+  <section class="room" id="room-languages" data-tone="languages" inert>
+    <div class="room-inner">
+      <p class="giant">Languages</p>
+      <p class="role">Mandarin</p>
+      <p class="sub">Native</p>
+      <p class="role">English</p>
+      <p class="line">
+        <span>IELTS 7.5 · CET-4 · CET-6</span>
+        <button class="proof" type="button" data-image="assets/ielts.jpg">IELTS</button>
+      </p>
+    </div>
+  </section>
+
+  <section class="room" id="room-portraits" data-tone="portraits" inert>
+    <div class="room-inner wide">
+      <p class="giant">Portraits</p>
+      <div class="frames">
+        <img src="assets/portrait-a.jpg" alt="JI Yuzhu">
+        <img src="assets/portrait-b.jpg" alt="JI Yuzhu">
+        <img src="assets/portrait-c.jpg" alt="JI Yuzhu">
+      </div>
+    </div>
+  </section>
+
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet-pages" id="sheet-pages" hidden></div>
+    <div class="sheet-copy" id="coursework-sheet" hidden>
+      <p class="sheet-title">Coursework</p>
+      <ul class="sheet-list">
+        <li>Econometrics</li>
+        <li>Applied Statistics</li>
+        <li>Machine Learning Methods</li>
+        <li>Data Wrangling &amp; Visualization</li>
+        <li>Probabilistic Modeling</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="vendor/pdf.min.js"></script>
+  <script src="app.js?v=40"></script>
+</body>
+</html>
