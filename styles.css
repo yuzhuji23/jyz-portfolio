@@ -1,3 +1,32 @@
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fonts/cormorant-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fonts/cormorant-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/cormorant-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: Outfit;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fonts/outfit-latin.woff2") format("woff2");
+}
+
 :root {
   --ink: #07080d;
   --cream: #f4f1ea;
@@ -844,6 +873,109 @@ body.in-room .field {
   .stack .post { gap: 12px; }
   .stack .post-name { font-size: 22px; }
   .stack .post-blurb { font-size: 13px; }
+}
+
+@media (min-width: 761px) {
+  .room.is-on {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .room-inner {
+    width: min(1480px, 84vw);
+    max-width: 84vw;
+    height: auto;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(8px, 1.5vh, 20px);
+    padding: clamp(20px, 3vh, 48px) 0;
+  }
+  .room-inner.wide { width: min(1760px, 92vw); max-width: none; }
+  #room-languages .room-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(32px, 6vw, 96px);
+    row-gap: clamp(10px, 2vh, 24px);
+    align-content: center;
+    min-height: 78vh;
+  }
+  #room-languages .giant { grid-column: 1 / -1; }
+  #room-languages .room-inner > :nth-child(2) { grid-column: 1; grid-row: 2; }
+  #room-languages .room-inner > :nth-child(3) { grid-column: 1; grid-row: 3; }
+  #room-languages .room-inner > :nth-child(4) { grid-column: 2; grid-row: 2; }
+  #room-languages .room-inner > :nth-child(5) { grid-column: 2; grid-row: 3; align-self: center; }
+  #room-languages .role { font-size: clamp(28px, 2.8vw, 48px); }
+  #room-languages .sub,
+  #room-languages .line { font-size: clamp(16px, 1.3vw, 24px); }
+  .giant { font-size: clamp(40px, 5.4vh, 76px); }
+  .facts,
+  .years {
+    flex: none;
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .facts strong { font-size: clamp(22px, 3.1vh, 36px); }
+  .facts li {
+    font-size: clamp(15px, 1.75vh, 19px);
+    padding: clamp(6px, 1vh, 16px) 0;
+    gap: clamp(4px, 0.6vh, 8px);
+  }
+  .years li {
+    gap: clamp(4px, 0.6vh, 8px);
+    padding: clamp(8px, 1.2vh, 16px) 0;
+    font-size: clamp(15px, 1.8vh, 19px);
+  }
+  .years .role { font-size: clamp(20px, 2.5vh, 28px); }
+  .role { font-size: clamp(18px, 2.2vh, 26px); }
+  .sub { font-size: clamp(14px, 1.6vh, 17px); }
+  .room.is-detail .room-inner {
+    width: min(1680px, 82vw);
+    padding-top: clamp(24px, 4.5vh, 64px);
+  }
+  .room.is-detail .giant { font-size: clamp(32px, 5vh, 58px); }
+  .room.is-detail .facts li {
+    font-size: clamp(14px, 1.7vh, 17px);
+    line-height: 1.45;
+    padding: clamp(5px, 0.9vh, 12px) 0;
+  }
+  .lane { width: min(1680px, 94vw); }
+  .lane.two { width: min(1200px, 86vw); }
+  .lane.three { width: min(1680px, 94vw); }
+  .lane.three .post-name { font-size: clamp(16px, 1.6vh, 24px); }
+  .post-name { font-size: clamp(16px, 2vh, 26px); }
+  .room.is-detail .room-inner.split {
+    width: min(1760px, 94vw);
+    height: auto;
+    max-height: 100%;
+    display: grid;
+    grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+    gap: clamp(20px, 3vw, 56px);
+    align-items: center;
+    padding: clamp(20px, 4vh, 64px) clamp(24px, 3vw, 48px);
+  }
+  .board {
+    width: 100%;
+    max-height: min(62vh, 760px);
+    justify-self: stretch;
+  }
+  .frames { flex: 1; align-items: flex-end; min-height: 0; }
+  .frames img {
+    height: auto;
+    max-height: min(62vh, 760px);
+    width: auto;
+    max-width: 32%;
+  }
+  .stack {
+    width: min(1280px, 78vw);
+    gap: clamp(18px, 3.2vh, 40px);
+  }
+  .stack .post-name { font-size: clamp(26px, 3.4vh, 42px); }
+  .stack .post-blurb { font-size: clamp(14px, 1.7vh, 18px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -197,7 +197,13 @@ function systemFrame(time) {
   const cx = w * (mobile ? 1.08 : 0.96);
   const cy = h * (mobile ? 1.08 : 0.98);
   const rings = mobile ? [1.02, 1.34, 1.66, 2.0] : [0.5, 0.66, 0.82, 0.98];
-  const flat = mobile ? 1 : 0.58;
+  // 16:9 keeps the current fan. Wider screens compress vertically so the
+  // top planet stays inside; taller screens open the fan so the top is used.
+  const vCap = (cy - Math.min(124, h * 0.12)) / 0.81;
+  const v = mobile ? w : Math.min(h * 0.58 * 16 / 9, vCap);
+  const labelRoom = Math.min(168, Math.max(120, w * 0.1));
+  const uCap = (cx - labelRoom) / 0.92;
+  const u = mobile ? w : Math.min(w, uCap);
   const fig = document.querySelector(".figure").getBoundingClientRect();
   const body = {
     left: fig.left + fig.width * 0.04,
@@ -208,8 +214,8 @@ function systemFrame(time) {
   const blocked = (x, y) => x > body.left - 28 && x < body.right && y > body.top - 16 && y < body.bottom + 12;
   const at = (ring, deg) => {
     const rad = deg * Math.PI / 180;
-    const rx = rings[ring] * w;
-    const ry = rx * flat;
+    const rx = rings[ring] * u;
+    const ry = rings[ring] * v;
     return { x: cx + Math.cos(rad) * rx, y: cy + Math.sin(rad) * ry };
   };
   const drift = reduce ? 0 : Math.sin(time / 11000) * (mobile ? 4 : 5);
@@ -240,8 +246,8 @@ function systemFrame(time) {
     orbits.setAttribute("viewBox", "0 0 " + w + " " + h);
     orbits.replaceChildren();
     rings.forEach((ring) => {
-      const rx = ring * w;
-      const ry = rx * flat;
+      const rx = ring * u;
+      const ry = ring * v;
       let d = "";
       let drawing = false;
       for (let deg = 176; deg <= 262; deg += 1.2) {
@@ -336,10 +342,30 @@ function paintStars(time) {
 
 systemFrame(0);
 paintStars(0);
+function fitRooms() {
+  const desktop = window.innerWidth >= 761;
+  document.querySelectorAll(".room-inner, .lane, .stack").forEach((el) => {
+    el.style.zoom = "1";
+    if (!desktop) {
+      el.style.zoom = "";
+      return;
+    }
+    const rect = el.getBoundingClientRect();
+    if (rect.height < 2 || rect.width < 2) return;
+    let zoom = Math.min((window.innerHeight * 0.92) / rect.height, (window.innerWidth * 0.96) / rect.width);
+    if (!isFinite(zoom) || zoom <= 0) return;
+    if (zoom > 1) zoom = 1;
+    el.style.zoom = String(Math.round(zoom * 100) / 100);
+  });
+}
+
 window.addEventListener("resize", () => {
   orbitKey = "";
+  fitRooms();
   if (reduce) systemFrame(0);
 });
+fitRooms();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitRooms);
 
 if (!reduce) {
   let tx = window.innerWidth * 0.5;
